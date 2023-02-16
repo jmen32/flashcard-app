@@ -17,7 +17,7 @@ function DeckList(){
         }
         getDecks();
     }, [])
-
+    console.log('Decks are -', decks)
     const ViewDecks = decks.map((deck) => {
         return (
             <div className="border rounded p-2 my-2" key={deck.id}>
