@@ -1,17 +1,21 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { deleteDeck } from "../utils/api";
+import { deleteCard } from "../utils/api";
 
-function DeleteCards({ deck }) {
-
-    const history = useHistory();
+function DeleteCards({ card }) {
 
     const deleteHandle = async () => {
         const confirmed = window.confirm("Delete this card? \n You will not be able to recover it.")
-        if(confirmed){
-            await deleteDeck(deck.id).then(() => history.push("/"))
+        if(confirmed && card && card.id){
+            try{
+            deleteCard(card.id)
+            }catch(error){
+                return console.error
+            }
         }
     };
+    //instead of window.reload use pop();
+
+    // console.log(card)
     
     return(
         <button type="button" className="btn btn-danger" onClick={deleteHandle}>

@@ -25,7 +25,7 @@ function CreateNewDeck(){
         event.preventDefault();
         const abortController = new AbortController()
         const deck = await createDeck({...formData}, abortController.signal)
-        history.push(`/deck/${deck.id}`)
+        history.push(`/decks/${deck.id}`)
         return deck
     }
 

@@ -63,15 +63,18 @@ function Study(){
             return(
                 <div>
                 <h2>Not enough cards.</h2>
-                <p>You need atleast 3 cards to study. There are {cards.length} in this deck.</p>
+                <p>You need atleast 3 cards to study. There are {cards.length} cards in this deck.</p>
+                <Link to={`/decks/${deckId}/cards/new`}>
+                <button className="btn btn-primary mr-2">
+                <span className="oi oi-plus"></span> Add Card
+                </button>
+                </Link>
                 </div>
             )
         }
     }
 
-    console.log(cards)
     return(
-        
         <div>
         {/* creates a nav on top of the card  */}
         <nav aria-label="breadcrumb">

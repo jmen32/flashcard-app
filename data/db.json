@@ -11,13 +11,13 @@
       "id": 2
     },
     {
-      "name": "dsgs",
-      "description": "sgdsdgs",
+      "name": "Thinkful Mock Decks",
+      "description": "Mock deck descriptions",
       "id": 3
     },
     {
-      "name": "asdfasfdfs",
-      "description": "asdf safd asdfas dfasasdf",
+      "name": "development",
+      "description": "a b c d e f g",
       "id": 4
     }
   ],
@@ -58,6 +58,126 @@
       "back": "b",
       "deckId": 1,
       "id": 7
+    },
+    {
+      "front": "card 1",
+      "back": "back 1",
+      "deckId": 3,
+      "id": 8
+    },
+    {
+      "front": "asdfadf",
+      "back": "dasfasdfasd",
+      "deckId": null,
+      "id": 10
+    },
+    {
+      "id": 12,
+      "front": "a s",
+      "back": "sss"
+    },
+    {
+      "front": "a",
+      "back": "b",
+      "deckId": 3,
+      "id": 14
+    },
+    {
+      "id": 16,
+      "front": "as",
+      "back": "b"
+    },
+    {
+      "front": "b",
+      "back": "c",
+      "deckId": 4,
+      "id": 19
+    },
+    {
+      "id": 21,
+      "front": "ysdf",
+      "back": "iasdfa"
+    },
+    {
+      "id": 22,
+      "front": "l",
+      "back": "kk"
+    },
+    {
+      "front": "sdf",
+      "back": "dfs  ",
+      "deckId": 5,
+      "id": 23
+    },
+    {
+      "id": 25,
+      "front": "ds",
+      "back": "vs"
+    },
+    {
+      "id": 26,
+      "front": "asss",
+      "back": "bsssss"
+    },
+    {
+      "id": 27,
+      "front": "ss",
+      "back": "bs"
+    },
+    {
+      "id": 28,
+      "front": "ds",
+      "back": "vd"
+    },
+    {
+      "id": 29,
+      "front": "bss",
+      "back": "bss"
+    },
+    {
+      "id": 30,
+      "front": "adf",
+      "back": "bsdf"
+    },
+    {
+      "id": 31,
+      "front": "csss",
+      "back": "dsss"
+    },
+    {
+      "id": 32,
+      "front": "abs",
+      "back": "cbs"
+    },
+    {
+      "id": 33,
+      "front": "ab",
+      "back": "bc"
+    },
+    {
+      "id": 34,
+      "front": "as",
+      "back": "bs"
+    },
+    {
+      "id": 35,
+      "front": "as",
+      "back": "bs"
+    },
+    {
+      "id": 36,
+      "front": "as",
+      "back": "bs"
+    },
+    {
+      "id": 37,
+      "front": "as",
+      "back": "bs"
+    },
+    {
+      "id": 38,
+      "front": "as",
+      "back": "bs"
     }
   ]
 }

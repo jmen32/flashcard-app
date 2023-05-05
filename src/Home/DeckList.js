@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom"
+import DeckDelete from "../Deck/DeckDelete";
 import { listDecks } from "../utils/api"
-import DeleteDeck from "./DeleteDeck";
-
 
 
 function DeckList(){
@@ -13,7 +12,6 @@ function DeckList(){
         async function getDecks() {
             const list = await listDecks();
             setDecks(list)
-            // console.log(list)
         }
         getDecks();
     }, [])
@@ -37,6 +35,7 @@ function DeckList(){
                         <span className="oi oi-book mx-1"></span>
                         Study
                     </button>
+                    <DeckDelete deckId={deck.id}/>
                 </div>
             </div>
         )
