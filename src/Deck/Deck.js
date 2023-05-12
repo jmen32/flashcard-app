@@ -6,7 +6,7 @@ import DeckNavBar from './DeckNavBar';
 import CardList from '../EditCard/CardList';
 
 export default function Deck() {
-    const [deck, setDeck] = useState({});
+    const [deck, setDeck] = useState([]);
     const [cards, setCards] = useState([])
     const { deckId } = useParams();
 
@@ -49,7 +49,7 @@ export default function Deck() {
             </div>
           </div>
           <div className="col-sm-4 float-right">
-            <DeckDelete deck={deck}/>
+            <DeckDelete deck={deckId}/>
           </div>
         </div>
       </div>

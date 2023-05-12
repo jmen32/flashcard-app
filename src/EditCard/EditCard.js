@@ -9,6 +9,7 @@ export default function EditCard() {
     const [formData, setFormData] = useState({
         front: "",
         back: "",
+        id: "",
     });
     const { deckId, cardId } = useParams();
     const history = useHistory();
@@ -17,14 +18,15 @@ export default function EditCard() {
         async function loadDeckAndCard(){
             const loadedDeck= await readDeck(deckId)
             setDeck(loadedDeck)
-            // console.log(loadedDeck)
+            console.log(loadedDeck)
             const loadedCard =  await readCard(cardId)
             setCard(loadedCard)
-            // console.log(loadedCard)
+            console.log(loadedCard)
             setFormData({
                 id: loadedCard.id,
                 front: loadedCard.front,
                 back: loadedCard.back,
+                deckId: loadedDeck.id,
             });
         }
         loadDeckAndCard();
@@ -37,13 +39,19 @@ const handleChange = ({ target }) => {
   });
 };
 
+
+//add deckId
 const handleSubmit = async (event) => {
   event.preventDefault();
-  const updatedCard = await updateCard({ ...formData, id: cardId });
+  const updatedCard = await updateCard({ ...formData});
   console.log(updatedCard);
+  console.log(deck)
   setCard(updatedCard);
-  history.push(`/decks/${deck.id}/cards/${updatedCard.id}`);
+  history.push(`/decks/${deckId}`);
+  return updatedCard;
 };
+
+
 
   const handleCancel = (event) => {
     history.push(`/decks/${deckId}`)
@@ -67,8 +75,8 @@ const handleSubmit = async (event) => {
             name="front"
             rows="3"
             placeholder="front side of card"
-            onChange={handleChange}
             value={formData.front}
+            onChange={handleChange}
           />
         </div>
         <div className="mb-3">
@@ -81,8 +89,8 @@ const handleSubmit = async (event) => {
             name="back"
             rows="3"
             placeholder="Back side of card"
-            onChange={handleChange}
             value={formData.back}
+            onChange={handleChange}
           />
         </div>
         <button

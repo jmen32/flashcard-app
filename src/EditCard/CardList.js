@@ -6,8 +6,6 @@ import { readDeck } from '../utils/api'
 export default function CardList({cards}) {
 const { deckId } = useParams();
 const [deck, setDeck] = useState([])
-// no params() not the last string on url
-// const {id, setId} = useState({})
 
  useEffect(() => {
     async function loadDeck(){
@@ -16,7 +14,6 @@ const [deck, setDeck] = useState([])
     }
     loadDeck();
   }, [deckId])
-// get deckId from query string
 
   return (
     <div>
