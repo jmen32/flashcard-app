@@ -25,4 +25,5 @@ function DeckDelete({ deckId }) {
         </button>
     )
 }
+
 export default DeckDelete;

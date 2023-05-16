@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom"
-import DeckDelete from "../Deck/DeckDelete";
-import { listDecks } from "../utils/api"
+// import DeckDelete from "../Deck/DeckDelete";
+import { listDecks, deleteDeck } from "../utils/api"
 
 
 function DeckList(){
     const [decks, setDecks] = useState([]);
     const history = useHistory();
+    // const { deckId } = useParams();
 
     useEffect(() => {
         async function getDecks() {
@@ -15,6 +16,20 @@ function DeckList(){
         }
         getDecks();
     }, [])
+
+    //create deckDelete functionality
+    const deleteHandle = async (id) => {
+    const confirmed = window.confirm(
+    "Delete this deck? You will not be able to recover it."
+    );
+    if (confirmed) {
+            await deleteDeck(id);
+            const list = await listDecks()
+            setDecks(list)
+            history.push("/");
+        }
+
+    }
     
     const ViewDecks = decks.map((deck) => {
         return (
@@ -35,7 +50,9 @@ function DeckList(){
                         <span className="oi oi-book mx-1"></span>
                         Study
                     </button>
-                    <DeckDelete deckId={deck.id}/>
+                    <button type="button" className="btn btn-danger float-right" onClick={() => deleteHandle(deck.id)}>
+                        <span className="oi oi-trash"></span>
+                    </button>
                 </div>
             </div>
         )
@@ -49,3 +66,4 @@ function DeckList(){
 }
 
 export default DeckList
+
