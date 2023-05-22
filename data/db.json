@@ -11,8 +11,8 @@
       "id": 2
     },
     {
-      "name": "a",
-      "description": "b",
+      "name": "af d fadfas dfa sd",
+      "description": "dfad fas dffdsf asd fasdf a",
       "id": 3
     }
   ],
@@ -53,18 +53,6 @@
       "back": "b",
       "deckId": 1,
       "id": 7
-    },
-    {
-      "id": 8,
-      "front": "asd",
-      "back": "asd",
-      "deckId": 3
-    },
-    {
-      "front": "as",
-      "back": "as",
-      "deckId": 3,
-      "id": 9
     }
   ]
 }

@@ -1,109 +1,77 @@
-import React, {useState, useEffect} from 'react'
-import BreadcrumbNav from './BreadcrumbNav'
-import { useParams, useHistory } from 'react-router-dom'
-import { readDeck, readCard, updateCard } from '../utils/api'
+import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import BreadcrumbNav from './BreadcrumbNav';
+import { readDeck, readCard, updateCard } from '../utils/api';
+import CardForm from './CardForm';
 
 export default function EditCard() {
-    const [card, setCard] = useState({})
-    const [deck, setDeck] = useState([])
-    const [formData, setFormData] = useState({
-        front: "",
-        back: "",
-        id: "",
-    });
-    const { deckId, cardId } = useParams();
-    const history = useHistory();
-
-    useEffect(() => {
-        async function loadDeckAndCard(){
-            const loadedDeck= await readDeck(deckId)
-            setDeck(loadedDeck)
-            console.log(loadedDeck)
-            const loadedCard =  await readCard(cardId)
-            setCard(loadedCard)
-            console.log(loadedCard)
-            setFormData({
-                id: loadedCard.id,
-                front: loadedCard.front,
-                back: loadedCard.back,
-                deckId: loadedDeck.id,
-            });
-        }
-        loadDeckAndCard();
-    }, [cardId, deckId])
-  
-const handleChange = ({ target }) => {
-  setFormData({
-    ...formData,
-    [target.name]: target.value,
+  const [card, setCard] = useState({});
+  const [deck, setDeck] = useState({});
+  const [formData, setFormData] = useState({
+    front: '',
+    back: '',
+    id: '',
+    deckId: '',
   });
-};
+  const { deckId, cardId } = useParams();
+  const history = useHistory();
 
+  useEffect(() => {
+    async function loadDeckAndCard() {
+      const loadedDeck = await readDeck(deckId);
+      setDeck(loadedDeck);
+      const loadedCard = await readCard(cardId);
+      setCard(loadedCard);
+      setFormData({
+        id: loadedCard.id,
+        front: loadedCard.front,
+        back: loadedCard.back,
+        deckId: loadedDeck.id,
+      });
+    }
+    loadDeckAndCard();
+  }, [cardId, deckId]);
 
-//add deckId
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  const updatedCard = await updateCard({ ...formData});
-  console.log(updatedCard);
-  console.log(deck)
-  setCard(updatedCard);
-  history.push(`/decks/${deckId}`);
-  return updatedCard;
-};
+  const handleChange = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
 
-
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const updatedCard = await updateCard({ ...formData });
+    setCard(updatedCard);
+    history.push(`/decks/${deckId}`);
+  };
 
   const handleCancel = (event) => {
-    history.push(`/decks/${deckId}`)
-  }
+    history.push(`/decks/${deckId}`);
+  };
 
   return (
     <div>
-        <BreadcrumbNav EditCard={EditCard} card={card} deck={deck}/>
+      <BreadcrumbNav EditCard={EditCard} card={card} deck={deck} />
 
-        <h2>Edit Card</h2>
+      <h2>Edit Card</h2>
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="front" className="form-label">
-            Front
-          </label>
-          <textarea
-            type="text"
-            className="form-control"
-            id="front"
-            name="front"
-            rows="3"
-            placeholder="front side of card"
-            value={formData.front}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="back" className="form-label">
-            Back
-          </label>
-          <textarea
-            className="form-control"
-            id="back"
-            name="back"
-            rows="3"
-            placeholder="Back side of card"
-            value={formData.back}
-            onChange={handleChange}
-          />
-        </div>
-        <button
-          type="button"
-          className="btn btn-secondary mr-2"
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      <CardForm
+        formData={formData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+
+      <button
+        type="button"
+        className="btn btn-secondary mr-2"
+        onClick={handleCancel}
+      >
+        Cancel
+      </button>
+      <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
-  )
+  );
 }
